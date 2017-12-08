@@ -1,14 +1,29 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
+  "name": "exiftool-wrapper",
+  "version": "0.1.0",
+  "description": "This is a ExifTool node.js wrapped version. Help you can read / write / create exif, iptc and more information of media",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "exiftool",
+    "read",
+    "write",
+    "file",
+    "buffer"
+  ],
+  "author": "Kim Hsiao <white.shopping@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:poyhsiao/exiftool-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/poyhsiao/exiftool-wrapper/issues"
+  },
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1"
-  }
+  },
+  "homepage": "https://github.com/poyhsiao/exiftool-wrapper"
 }
