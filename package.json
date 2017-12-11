@@ -22,6 +22,8 @@
   ],
   "author": "Kim Hsiao <white.shopping@gmail.com>",
   "directories": {
+    "lib": "lib",
+    "bin": "bin",
     "example": "example",
     "test": "test"
   },
