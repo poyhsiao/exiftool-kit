@@ -1,3 +1,6 @@
 node_modules
 *.log
 *.lock
+test/aaa.jpg
+test/bbb.jpg
+test/ccc.jpg

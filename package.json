@@ -1,8 +1,11 @@
 {
   "name": "exiftool-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This is a ExifTool node.js wrapped version. Help you can read / write / create exif, iptc and more information of media",
-  "main": "index.js",
+  "main": "lib/exiftool-wrapper.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
