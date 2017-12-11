@@ -2,96 +2,89 @@
  * This is an example helps to understand how to write image tages (eg. exif) data from entity image file or buffer
  */
 
-const fs = require('fs')
 const path = require('path')
-const Promise = require('bluebird')
 const ExifTool = require('../lib/exiftool-wrapper')
+const { readFile, writeFile } = require('../lib/utils')
 const exiftool = new ExifTool()
-
-const fse = Promise.promisifyAll(fs)
 
 const imagePath = './test'
 const imageFile = path.join(imagePath, 'IMG_2583.JPG')
 
 let imageBuffer = null
 
-/**
- * Write tags data to file
- *
- * @param {String|Buffer} filePath File or Buffer to write tags
- * @param {Array} tags Array of tags to write
- */
-function writeToFile (filePath, tags) {
-  return exiftool.setTags({
-    source: filePath,
-    tags
-  })
-}
-
 function getImageBuffer () {
-  return Promise.resolve(
-    (imageBuffer != null)
-    ? imageBuffer
-    : fse.readFileAsync(imageFile)
+  return (imageBuffer != null)
+  ? Promise.resolve(imageBuffer)
+  : readFile(imageFile)
     .then(buffer => {
       imageBuffer = buffer
       return imageBuffer
     })
-  )
 }
 
 ;(() => {
   return getImageBuffer()
   .then(() => {
-    return Promise.props({
-      /**
-       * update Make to 'Kim Hsiao' from a file
-       */
-      'writeMakeFile': writeToFile(imageFile, [
-        {
-          tag: 'Make',
-          value: 'Kim Hsiao'
-        }
-      ]),
-
+    return Promise.all([
       /**
        * write iptc/By-line data to buffer
        */
-      'writeBylineBuffer': writeToFile(imageBuffer, [
-        {
-          tag: 'iptc:By-line',
-          value: 'Kim Hsiao'
-        }
-      ]),
+      exiftool.setTags({
+        source: imageBuffer,
+        tags: [
+          {
+            tag: 'iptc:By-line',
+            value: 'Kim Hsiao'
+          }
+        ]
+      })
+      .then(buffer => {
+        return writeFile(path.join(imagePath, 'aaa.jpg'), buffer)
+      }),
 
       /**
        * remove Model from buffer
        */
-      'removeModelBuffer': writeToFile(imageBuffer, [
-        {
-          tag: 'Model',
-          value: ''
-        }
-      ]),
+      exiftool.setTags({
+        source: imageBuffer,
+        tags: [
+          {
+            tag: 'Model',
+            value: ''
+          }
+        ]
+      })
+      .then(buffer => {
+        return writeFile(path.join(imagePath, 'bbb.jpg'), buffer)
+      }),
 
       /**
        * Remove all tags from buffer
        */
-      'removeAllTagsBuffer': writeToFile(imageBuffer, [
-        {
-          tag: 'all',
-          value: ''
-        }
-      ])
-    })
-  })
-  .then(dat => {
-    const { writeBylineBuffer, removeModelBuffer, removeAllTagsBuffer } = dat
+      exiftool.setTags({
+        source: imageBuffer,
+        tags: [
+          {
+            tag: 'all',
+            value: ''
+          }
+        ]
+      }).then(buffer => {
+        return writeFile(path.join(imagePath, 'ccc.jpg'), buffer)
+      }),
 
-    return Promise.all([
-      fse.writeFileAsync(path.join(imagePath, 'aaa.jpg'), writeBylineBuffer),
-      fse.writeFileAsync(path.join(imagePath, 'bbb.jpg'), removeModelBuffer),
-      fse.writeFileAsync(path.join(imagePath, 'ccc.jpg'), removeAllTagsBuffer)
+      /**
+       * update Make to 'Kim Hsiao' from a file
+       */
+      exiftool.setTags({
+        source: imageFile,
+        tags: [
+          {
+            tag: 'Make',
+            value: 'Kim Hsiao'
+          }
+        ]
+      })
     ])
   })
   .catch(console.error)
