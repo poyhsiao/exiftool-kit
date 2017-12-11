@@ -1,6 +1,6 @@
 {
   "name": "exiftool-kit",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "This is a ExifTool node.js wrapped version. Help you can read / write / create exif, iptc and more information of media",
   "main": "lib/exiftool-wrapper.js",
   "engines": {
@@ -23,7 +23,6 @@
   "author": "Kim Hsiao <white.shopping@gmail.com>",
   "directories": {
     "lib": "lib",
-    "bin": "bin",
     "example": "example",
     "test": "test"
   },
