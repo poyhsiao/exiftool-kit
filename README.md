@@ -12,17 +12,17 @@ $ npm install --save exiftool-kit
 
 ## how to use
 
-### set your own exiftool
+### set your own exiftool (not necessary, unless you really wanna set your own exiftool binary)
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool(pathToYourOwnExifTool)
 ```
 
-or
+*or*
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
 exiftool.setBin(pathToYourOwnExifTool)
@@ -33,7 +33,7 @@ exiftool.setBin(pathToYourOwnExifTool)
 #### read a single file
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
 exiftool.getTag({
@@ -44,7 +44,7 @@ exiftool.getTag({
 #### read files
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
 exiftool.getTag({
@@ -55,7 +55,7 @@ exiftool.getTag({
 #### read buffer
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
 exiftool.getTag({
@@ -68,7 +68,7 @@ exiftool.getTag({
 #### write / update tags
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
 exiftool.setTags({
@@ -81,7 +81,7 @@ exiftool.setTags({
 #### remove tags
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
 exiftool.setTags({
@@ -95,7 +95,7 @@ exiftool.setTags({
 #### remove all tags
 
 ```javascript
-const ExifTool = require('exiftool')
+const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
 exiftool.setTags({
