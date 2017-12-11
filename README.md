@@ -106,8 +106,13 @@ exiftool.setTags({
 })
 ```
 
+### example
+
+You may check [example], to get more detail example code
+
 ## Note
 
 When you edit tags to a file, this will return the given file name. If you edit tags from a buffer, it will return a updated buffer.
 
 [exiftool]: https://www.sno.phy.queensu.ca/~phil/exiftool/
+[example]: https://github.com/poyhsiao/exiftool-kit/tree/master/example
