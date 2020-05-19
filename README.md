@@ -36,7 +36,7 @@ exiftool.setBin(pathToYourOwnExifTool)
 const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
-exiftool.getTag({
+exiftool.getTags({
     source: file
 })
 ```
@@ -47,7 +47,7 @@ exiftool.getTag({
 const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
-exiftool.getTag({
+exiftool.getTags({
     source: [file1, file2]
 })
 ```
@@ -58,7 +58,7 @@ exiftool.getTag({
 const ExifTool = require('exiftool-kit')
 const exiftool = new ExifTool()
 
-exiftool.getTag({
+exiftool.getTags({
     source: buffer
 })
 ```
